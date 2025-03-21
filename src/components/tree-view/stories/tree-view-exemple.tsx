@@ -106,7 +106,7 @@ export const TreeViewExemple = ({
               id: "2.2.2",
               name: "children",
               childrenCount: 0,
-              type: TreeViewNodeTypeEnum.NODE,
+              nodeType: TreeViewNodeTypeEnum.NODE,
               children: [],
             },
           ]);
@@ -182,8 +182,8 @@ export const TreeViewExemple = ({
 
               <DragOverlay>
                 <div className="drag-overlay-item">
-                  {draggingData?.type === undefined ||
-                  draggingData?.type === TreeViewNodeTypeEnum.NODE
+                  {draggingData?.nodeType === undefined ||
+                  draggingData?.nodeType === TreeViewNodeTypeEnum.NODE
                     ? draggingData?.name
                     : ""}
                 </div>
@@ -204,7 +204,7 @@ const Folder = ({ folder }: FolderProps) => {
   const [isOver, setIsOver] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
 
-  if (folder.type && folder.type !== TreeViewNodeTypeEnum.NODE) {
+  if (folder.nodeType && folder.nodeType !== TreeViewNodeTypeEnum.NODE) {
     return null;
   }
 

@@ -1,5 +1,5 @@
 import { NodeRendererProps } from "react-arborist";
-import {TreeDataItem, TreeViewDataType, TreeViewNodeTypeEnum} from "./types";
+import { TreeDataItem, TreeViewDataType, TreeViewNodeTypeEnum } from "./types";
 import {
   PropsWithChildren,
   useCallback,
@@ -74,13 +74,15 @@ export const TreeViewItem = <T,>({
     handleOver(isOver);
   }, [isOver, handleOver]);
 
-  if (node.data.value.type === TreeViewNodeTypeEnum.SEPARATOR) {
+  if (node.data.value.nodeType === TreeViewNodeTypeEnum.SEPARATOR) {
     return <div className="c__tree-view--node__separator" />;
   }
 
-  if (node.data.value.type === TreeViewNodeTypeEnum.TITLE) {
+  if (node.data.value.nodeType === TreeViewNodeTypeEnum.TITLE) {
     return (
-      <div className="c__tree-view--node__title">{node.data.value.title}</div>
+      <div className="c__tree-view--node__title">
+        {node.data.value.headerTitle}
+      </div>
     );
   }
 

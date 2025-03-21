@@ -73,11 +73,14 @@ export const TreeViewItemExemple = ({
 
   return (
     <TreeViewItem {...props} loadChildren={(node) => loadChildren(node)}>
-      {props.node.data.value.type === TreeViewNodeTypeEnum.TITLE ||
-      props.node.data.value.type === TreeViewNodeTypeEnum.SEPARATOR ? null : (
+      {props.node.data.value.nodeType === TreeViewNodeTypeEnum.TITLE ||
+      props.node.data.value.nodeType ===
+        TreeViewNodeTypeEnum.SEPARATOR ? null : (
         <div className={"tree-view-item"}>
           <div className={`container`}>
-            <span className="name">{props.node.data.value.name}</span>
+            <span className="name">
+              {props.node.data.value.name} -- {props.node.data.value.id}
+            </span>
             <div className={`actions ${isOpen ? "show-actions" : ""}`}>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <DropdownMenu
