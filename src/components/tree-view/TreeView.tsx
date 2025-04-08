@@ -15,6 +15,7 @@ import {
 } from "./types";
 import { isNode, isSeparator, isTitle } from "./utils";
 import { useTreeContext } from "./providers/TreeContext";
+import { useCallback } from "react";
 
 export type OpenMap = {
   [id: string]: boolean;
@@ -146,6 +147,16 @@ export const TreeView = <T,>({
     }
   };
 
+  const disableDrag = useCallback(
+    (node: TreeDataItem<T>) => {
+      if (canDrag) {
+        return !canDrag(node);
+      }
+      return false;
+    },
+    [canDrag]
+  );
+
   if (!context) {
     return;
   }
@@ -163,12 +174,7 @@ export const TreeView = <T,>({
         idAccessor="key"
         onMove={onMove}
         rowHeight={35}
-        disableDrag={(node) => {
-          if (canDrag) {
-            return !canDrag(node);
-          }
-          return false;
-        }}
+        disableDrag={disableDrag}
         disableDrop={({ parentNode, dragNodes, index }) => {
           if (canDrop) {
             const canDropResult = canDrop({ parentNode, dragNodes, index });

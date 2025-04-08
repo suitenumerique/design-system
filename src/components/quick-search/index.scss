@@ -23,6 +23,14 @@
   &__right {
     display: flex;
     align-items: center;
-    width: 100%;
+    justify-content: flex-end;
+  }
+
+  &__right:not(.always-show-right) {
+    opacity: 0;
+  }
+
+  &__right.always-show-right {
+    opacity: 1 !important;
   }
 }
